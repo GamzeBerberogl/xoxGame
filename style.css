@@ -1,0 +1,126 @@
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(87, 19, 19);
+  }
+
+  .section {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+
+  .box {
+    width: 150px;
+    height: 150px;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .box:first-child, 
+  .box:nth-child(2), 
+  .box:nth-child(3) {
+    border-top: 0;
+  }
+
+  .box:last-child, 
+  .box:nth-child(7), 
+  .box:nth-child(8) {
+    border-bottom: 0;
+  }
+
+  .box:nth-child(3n+1) {
+    border-left: 0;
+  }
+
+  .box:nth-child(3n+3) {
+    border-right: 0;
+  }
+
+  .box.cross::before,
+  .box.cross::after,
+  .section.cross .box:not(.cross):not(.circle):hover::before,
+  .section.cross .box:not(.cross):not(.circle):hover::after  {
+    content: '';
+    position: absolute;
+    width: 10px ;
+    height: 100px;
+    background-color: rgb(45, 170, 136);
+  }
+
+  .box.cross::before,
+  .section.cross .box:not(.cross):not(.circle):hover::before {
+    transform: rotate(45deg);
+  }
+
+  .box.cross::after,
+  .section.cross .box:not(.cross):not(.circle):hover::after {
+    transform: rotate(-45deg);
+  }
+
+  .box.circle::before,
+  .box.circle::after,
+  .section.circle .box:not(.cross):not(.circle):hover::before,
+  .section.circle .box:not(.cross):not(.circle):hover::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgb(45, 170, 136);
+  }
+
+  .box.circle::before,
+  .section.circle .box:not(.cross):not(.circle):hover::before {
+    width: 100px;
+    height: 100px;
+  }
+
+  .box.circle::after,
+  .section.circle .box:not(.cross):not(.circle):hover::after {
+    width: 80px;
+    height: 80px;
+    background-color: rgb(87, 19, 19);
+  }
+
+  .section.circle .box:not(.cross):not(.circle):hover::before,
+  .section.cross .box:not(.cross):not(.circle):hover::before,
+  .section.cross .box:not(.cross):not(.circle):hover::after {
+    background-color:  rgba(45, 170, 137, 0.349);
+  }
+
+  .box.cross,.box.circle {
+    cursor: not-allowed;
+  }
+
+  .out {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.73);
+    color: rgb(255, 255, 255);
+    font-size: 5rem;
+    font-style: unset;
+  }
+
+  .out.show {
+    display: flex;
+  }
